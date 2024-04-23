@@ -26,7 +26,7 @@ def modelTrain(indexFolder, dataSet):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     MINIBATCH_SIZE = 16    # batch size
-    epoch_num = 10
+    epoch_num = 100
     # put the dataset into DataLoader
     trainLoader = Data.DataLoader(
         dataset=dataSet,
@@ -36,8 +36,8 @@ def modelTrain(indexFolder, dataSet):
 
     net = FactEmbedder()
     custom_criterion = customLoss()
-    net.to(device)
-    custom_criterion.to(device)
+    net = net.to(device)
+    custom_criterion = custom_criterion.to(device)
     optomizerAdam = torch.optim.Adam(net.parameters(), lr=0.01)
     TrainLoss = []
     for i in range(epoch_num):

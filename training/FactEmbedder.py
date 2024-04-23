@@ -14,7 +14,7 @@ class FactEmbedder(nn.Module):
 
     def forward(self, x):
         init_x =list(map(lambda xx: self.bert.encode(xx), x))
-        bert_x = torch.as_tensor(init_x)
+        bert_x = torch.as_tensor(init_x, device=self.bert.device)
         fc_out = self.fc(bert_x)
         return fc_out
 
