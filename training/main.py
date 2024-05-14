@@ -22,11 +22,10 @@ def load_data():
 
     return dataSet
 
-def modelTrain(indexFolder, dataSet):
+def modelTrain(epoch_num, dataSet):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     MINIBATCH_SIZE = 16    # batch size
-    epoch_num = 100
     # put the dataset into DataLoader
     trainLoader = Data.DataLoader(
         dataset=dataSet,
@@ -54,10 +53,10 @@ def modelTrain(indexFolder, dataSet):
     print("finish training")
     # save training loss
     TrainLoss0 = np.array(TrainLoss)
-    np.save('Trainloss_{}'.format(indexFolder), TrainLoss0)
+    np.save('Trainloss_{}'.format(epoch_num), TrainLoss0)
     # save the training result
     torch.save(
-        net, 'net_{}.pth'.format(indexFolder))
+        net, 'net_{}.pth'.format(epoch_num))
 
 
 if __name__ == "__main__":
@@ -67,4 +66,4 @@ if __name__ == "__main__":
     # choose the fold to train
     # for i in range(0,5):
     #     modelTrain(i,dataSet)
-    modelTrain(2, dataSet)
+    modelTrain(300, dataSet)
