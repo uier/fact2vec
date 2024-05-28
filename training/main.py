@@ -66,4 +66,4 @@ if __name__ == "__main__":
     # choose the fold to train
     # for i in range(0,5):
     #     modelTrain(i,dataSet)
-    modelTrain(300, dataSet)
+    modelTrain(15, dataSet)
